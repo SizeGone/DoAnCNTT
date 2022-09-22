@@ -14,6 +14,7 @@ template <class T> class List {
 	protected:
 		unsigned short int count = 0;
 		Node<T>* head;
+		Node<T>* reserve;
 		Node<T>* set_position(int position)const;
 	public:
 		List();
@@ -24,8 +25,17 @@ template <class T> class List {
 		//Method:
 		Error_Code Replace (int position, const T& item);
 		Error_Code Retrieve (int position,T& item)const;
+		Error_Code Reverse ();
 		Error_Code Insert (int position, T item);
 		Error_Code Remove (int position, T& item);
-		Error_Code AddItem (T item);
-		Error_Code PrintList ();
+		Error_Code PushBack (T item);
+		Error_Code PushFront (T item);
+		Error_Code PrintList (Node<T>* node);
+		T GetFront ();
+		T GetBack ();
+		T GetValueAt(int position);
+		Error_Code RemoveFront (T& item);
+		Error_Code RemoveBack (T& item);
+		Node<T>* GetHead();
+		Node<T>* GetReserve();
 };
