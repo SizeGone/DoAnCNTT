@@ -27,7 +27,7 @@ template<class T> List<T>::List() {
 }
 
 template<class T> List<T>::~List() {
-	//clear();
+	Clear();
 }
 
 template<class T> void List<T>::Clear() {
