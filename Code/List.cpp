@@ -24,7 +24,6 @@ template<class T> Node<T>* List<T>::set_position(int position) const {
 template<class T> List<T>::List() {
 	count = 0;
 	head = nullptr;
-    reserve = nullptr;
 }
 
 template<class T> List<T>::~List() {
@@ -197,8 +196,8 @@ template<class T> T List<T>::GetValueAt (int position){
     return "No value exists";
 }
 //In ra toàn bộ List:
-template<class T> Error_Code List<T>::PrintList (Node<T>* node){
-    Node<T> *tmp = node;
+template<class T> Error_Code List<T>::PrintList (){
+    Node<T> *tmp = head;
 	while (tmp != NULL)
     {
         cout << tmp->data << " ";
@@ -227,16 +226,6 @@ template<class T> Error_Code List<T>::Reverse () {
         current = next;
     }
     //Gắn lại node:
-    reserve = prev;
+    head = prev;
     return success;
-}
-//get head:
-template<class T> Node<T>* List<T>::GetHead() {
-	Node<T>* q = head;
-	return q;
-}
-//get reserve:
-template<class T> Node<T>* List<T>::GetReserve() {
-	Node<T>* q = reserve;
-	return q;
 }

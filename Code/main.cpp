@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 	test.PushBack("57");
 	test.Insert(1,"3");
 	cout <<"Danh sach List hien tai la:";
-	test.PrintList(test.GetHead());
+	test.PrintList();
 	cout << "So phan tu:" << test.Size() << endl;
 	cout << "Phan tu dau:" << test.GetFront() << endl;
 	cout << "Phan tu cuoi:" << test.GetBack() << endl;
@@ -35,10 +35,10 @@ int main(int argc, char** argv)
 	test.Remove(1, st);
 	cout<<"\nPhan tu da bi xoa la: " << st << endl;
 	cout <<"Danh sach List hien tai la:";
-	test.PrintList(test.GetHead());
+	test.PrintList();
 	test.Reverse();
 	cout <<"Danh sach List dao nguoc la:";
-	test.PrintList(test.GetReserve());
+	test.PrintList();
     return 0;
 }
 #endif
