@@ -1,6 +1,7 @@
 #include <iostream>
 #include "List.h"
 using namespace std;
+
 // Implement NODE
 template <class T>
 Node<T>::Node()
@@ -10,7 +11,7 @@ Node<T>::Node()
 }
 
 template <class T>
-Node<T>::Node(T item, Node<T> *linkNext, Node<T> *linkPrevious)
+Node<T>::Node(EWord<T>* item, Node<T> *linkNext, Node<T> *linkPrevious)
 {
     data = item;
     next = linkNext;
@@ -64,7 +65,7 @@ unsigned short int List<T>::Size() const
 {
     return count;
 }
-
+//Cần sửa lại:
 template <class T>
 Error_Code List<T>::Replace(int position, const T &item)
 {
@@ -86,7 +87,7 @@ Error_Code List<T>::Retrieve(int position, T &item) const
 }
 // Chèn dữ liệu mới vào vị trí bất kì trong List:
 template <class T>
-Error_Code List<T>::Insert(int position, T item)
+Error_Code List<T>::Insert(int position, EWord<T>* item)
 {
     if (position < 0 || position > count) // position = 0, count = 0
         return Error_Code::range_error;
@@ -133,7 +134,7 @@ Error_Code List<T>::Remove(int position, T &item)
         previous->next = q->next;
         q->next->previous = previous;
     }
-    item = q->data;
+    item = q->data->word;
     delete q;
     count--;
     return success;
@@ -145,7 +146,7 @@ Error_Code List<T>::RemoveFront(T &item)
     Node<T> *q = head;
     head = head->next;
     head->previous = nullptr;
-    item = q->data;
+    item = q->data->word;
     delete q;
     count--;
     return success;
@@ -156,14 +157,14 @@ Error_Code List<T>::RemoveBack(T &item)
 {
     Node<T> *q = set_position(count - 1);
     q->previous->next = nullptr;
-    item = q->data;
+    item = q->data->word;
     delete q;
     count--;
     return success;
 }
 // Thêm dữ liệu vào sau List:
 template <class T>
-Error_Code List<T>::PushBack(T item)
+Error_Code List<T>::PushBack(EWord<T> *item)
 {
     Node<T> *new_node = new Node<T>();
     new_node->data = item;
@@ -184,7 +185,7 @@ Error_Code List<T>::PushBack(T item)
 }
 // Thêm dữ liệu vào đầu List:
 template <class T>
-Error_Code List<T>::PushFront(T item)
+Error_Code List<T>::PushFront(EWord<T>* item)
 {
     Node<T> *new_node = new Node<T>();
     new_node->data = item;
@@ -202,7 +203,7 @@ Error_Code List<T>::PushFront(T item)
 }
 // Lấy giá trị ở phần tử đầu List:
 template <class T>
-T List<T>::GetFront()
+EWord<T>* List<T>::GetFront()
 {
     if (head == nullptr)
     {
@@ -213,7 +214,7 @@ T List<T>::GetFront()
 }
 // Lấy giá trị ở phần tử cuối List:
 template <class T>
-T List<T>::GetBack()
+EWord<T>* List<T>::GetBack()
 {
     Node<T> *ptemp = head;
     if (head == nullptr)
@@ -227,7 +228,7 @@ T List<T>::GetBack()
 }
 // Lấy giá trị ở vị trí bất kì trong List:
 template <class T>
-T List<T>::GetValueAt(int position)
+EWord<T>* List<T>::GetValueAt(int position)
 {
     if (head == nullptr)
     {
@@ -252,7 +253,8 @@ Error_Code List<T>::PrintList()
     Node<T> *tmp = head;
     while (tmp != nullptr)
     {
-        cout << tmp->data << " ";
+        cout << tmp->data->word << " ";
+        cout << "\n";
         tmp = tmp->next;
     }
     cout << "\n";
@@ -277,3 +279,8 @@ Error_Code List<T>::Reverse()
         head = temp->previous;
     return success;
 }
+template <class T>
+Node<T> * List<T>::GetHead(){
+    return head;
+}
+//

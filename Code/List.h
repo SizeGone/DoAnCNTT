@@ -2,12 +2,25 @@ typedef int List_entry;
 typedef int Node_entry;
 enum Error_Code {success, overflow, range_error};
 
+/* cac cau truc du lieu chinh cua chuong trinh */
+template <class T> struct NodeEx {
+	T info;
+	NodeEx<T> * next;
+};
+
+template <class T> struct EWord {
+	T word;
+	T type;
+	T mean[5];
+	NodeEx<T> * first;
+};
+
 template <class T> struct Node {
-	T data;
+	EWord<T>* data;
 	Node<T> * next;
 	Node<T> * previous;
 	Node();
-	Node(T item, Node<T> * linkNext=nullptr, Node<T>* linkPrevious=nullptr);
+	Node(EWord<T>* item, Node<T> * linkNext=nullptr, Node<T>* linkPrevious=nullptr);
 };
 
 template <class T> class List {
@@ -25,14 +38,15 @@ template <class T> class List {
 		Error_Code Replace (int position, const T& item);
 		Error_Code Retrieve (int position,T& item)const;
 		Error_Code Reverse ();
-		Error_Code Insert (int position, T item);
+		Error_Code Insert (int position, EWord<T>* item);
 		Error_Code Remove (int position, T& item);
-		Error_Code PushBack (T item);
-		Error_Code PushFront (T item);
+		Error_Code PushBack (EWord<T> *item);
+		Error_Code PushFront (EWord<T>* item);
 		Error_Code PrintList ();
-		T GetFront ();
-		T GetBack ();
-		T GetValueAt(int position);
+		EWord<T>* GetFront ();
+		EWord<T>* GetBack ();
+		EWord<T>* GetValueAt(int position);
 		Error_Code RemoveFront (T& item);
 		Error_Code RemoveBack (T& item);
+		Node<T> * GetHead();
 };
