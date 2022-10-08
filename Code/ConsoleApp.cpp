@@ -73,7 +73,6 @@ void InsertExToTopList(NodeEx<T> *&first, T vidu)
 template <class T>
 EWord<T> *convert(T line)
 {
-
 	EWord<T> *p = new EWord<T>();
 	int i, pos;
 	i = 0;
@@ -151,7 +150,7 @@ void readFile(List<T> &dict)
 	}
 }
 template <class T>
-void writeFile(List<T> dict)
+void writeFile(List<T> &dict)
 {
 	ofstream fo("wordst.txt");
 	if (fo.is_open())
@@ -247,10 +246,10 @@ Node<T>* Search(List<T> dict, T input) {
 
 //Timkiem
 template <class T>
-void SearchTest(List<T> dict, T input) {
+void SearchTest(List<T> &dict, T input) {
 	Node<T> *p = dict.GetHead();
 	while (p != NULL) {
-		if (Compare(input, p)) {
+		if (Compare<T>(input, p)) {
 			cout << p->data->word << "; ";
 		}
 		p = p->next;
@@ -350,7 +349,7 @@ int main(int argc, char** argv)
     readFile(main);
     //In thu nghiem ra thong tin tu dau tien:
     // WordInfo(main.GetHead());
-    cout << "\nIn ra danh sach cac tu tieng anh:";
+    cout << "\nIn ra danh sach cac tu tieng anh:\n";
     main.PrintList();
     cout << "So luong tu: ";
     cout << main.Size() << endl;

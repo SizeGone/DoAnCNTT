@@ -279,8 +279,10 @@ Error_Code List<T>::Reverse()
         head = temp->previous;
     return success;
 }
+
 template <class T>
-Node<T> * List<T>::GetHead(){
+Node<T> * List<T>::GetHead()
+{
     return head;
 }
 //
