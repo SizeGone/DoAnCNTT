@@ -1,7 +1,12 @@
 #include <iostream>
-#include "List.h"
+#include "List.hpp"
 using namespace std;
 
+
+//Implement EWord
+template <class T>
+EWord<T>::EWord(){
+}
 // Implement NODE
 template <class T>
 Node<T>::Node()
@@ -72,17 +77,17 @@ Error_Code List<T>::Replace(int position, const T &item)
     if (position < 0 || position > count)
         return Error_Code::range_error;
     Node<T> *tmp = set_position(position);
-    tmp->data = item;
+    tmp->data->word = item;
     return success;
 }
-
+//Lấy giá trị tại pos 
 template <class T>
 Error_Code List<T>::Retrieve(int position, T &item) const
 {
     if (position < 0 || position > count)
         return Error_Code::range_error;
     Node<T> *tmp = set_position(position);
-    item = tmp->data;
+    item = tmp->data->word;
     return success;
 }
 // Chèn dữ liệu mới vào vị trí bất kì trong List:
@@ -285,4 +290,3 @@ Node<T> * List<T>::GetHead()
 {
     return head;
 }
-//

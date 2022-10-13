@@ -257,7 +257,7 @@ void SearchTest(List<T> &dict, T input) {
 }
 //In danh sach tu ra man hinh
 template<class T>
-Node<T>* printList(List<T> dict, T input, int pos) {
+Node<T>* printList(List<T> &dict, T input, int pos) {
 	Node<T> *curword = NULL; // tu dang duoc highlight trong man hinh chinh	
 	// neu khung tim kiem k co gia tri, thi in het cac tu ra
 	int index = -1;
@@ -304,7 +304,7 @@ Node<T>* printList(List<T> dict, T input, int pos) {
 // ve man hinh chinh
 // tra ve tu dang duoc highlight
 template<class T>
-Node<T>* mainGraphics(List<T> dict, T input, int pos) {
+Node<T>* mainGraphics(List<T> &dict, T input, int pos) {
 	ClrScr();
 	int currline = 0;
 	
@@ -342,21 +342,21 @@ Node<T>* mainGraphics(List<T> dict, T input, int pos) {
 	
 	return currword;
 }
+template <class T> 
+EWord<T>* EnterData(){
+	EWord<T> *e = new EWord<T>();
+	cout << "Nhap tu tieng anh: ";
+	cin >> e->word;
+	cout << "Nhap nghia: ";
+	cin >> e->mean[0];
+	return e;
+}
 
 int main(int argc, char** argv)
 {
     List<string> main;
     readFile(main);
-    //In thu nghiem ra thong tin tu dau tien:
-    // WordInfo(main.GetHead());
-    cout << "\nIn ra danh sach cac tu tieng anh:\n";
-    main.PrintList();
-    cout << "So luong tu: ";
-    cout << main.Size() << endl;
-    writeFile(main); //đang write test vào file words.txt
-    //test chuc nang tim kiem
-    cout << "Danh sach cac tu co chu cai dau la 'a': ";
-    SearchTest<string>(main,"a");
+	mainGraphics<string>(main,"",0);
     return 0;
 }
 #endif
