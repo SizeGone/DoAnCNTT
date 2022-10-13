@@ -351,12 +351,79 @@ EWord<T>* EnterData(){
 	cin >> e->mean[0];
 	return e;
 }
-
+/* ham xu ly chinh cua chuong trinh */
+template <class T>
+void DictProcessing(List<T> &dict) {
+	Node<T> *curr = NULL;
+	string input = ""; // noi dung hien tai cua khung tim kiem
+	int keyCode = 0;
+	int pos = 0; // vi tri cua tu hien tai, vi tri thah sang (highlight)
+	int count = dict.Size(); // dem so luong tu co trong tu dien
+	
+	while (true) { // vong lap vo tan
+		curr = mainGraphics(dict, input, pos);	// ve toan bo giao dien
+		keyCode = getch(); // tam dung chuong trinh, nhan ky tu nhap vao		
+		switch (keyCode) {
+			case 8: // BACKSPACE
+				input = input.substr(0, input.size() - 1); // xoa ky tu cuoi
+				break;
+			case 9: // TAB
+				dict.Insert(1,EnterData<string>());
+				break;
+			case 13: // ENTER
+				// vao man hinh chi tiet tu
+				WordInfo(curr);
+				int k;
+				do {
+					k = getch();
+					if (k == 8) { // BACKSPACE
+						// xoa tu nay
+						T test;
+						dict.Remove(1, test);
+						input = ""; pos = 0;
+						break; // ve man hinh chinh
+					}
+					if (k == 9) { // TAB
+						// sua tu nay
+						dict.Insert(1,EnterData<string>());
+						input = ""; pos = 0;
+						break; // ve man hinh chinh
+					}
+					if (k == 27) { // ESCAPE
+						input = ""; // reset gia tri trong khung tim kiem
+						pos = 0;
+						break; // ve man hinh chinh
+					}
+				} while (true);
+				break;
+			case 27: // ESCAPE
+				gotoxy(2, 25);
+//				if (dulieuThaydoi == true) { // neu du lieu co thay doi
+//					cout << "Du lieu thay doi!!! Tien hanh ghi file..." << endl;
+//					ghiFile(tudien);
+//				}
+				exit(EXIT_SUCCESS); // thoat chuong trinh
+				break;
+			case 224: {
+				int key = getch();
+				if (key == 72) { pos--; } // UP
+				if (key == 80) { pos++; } // DOWN
+				if (pos < 0) pos = 0;
+				if (pos > count - 1) pos = count - 1;
+				break;
+			}
+			default:
+				if (keyCode >= 97 && keyCode <= 122) { // a-z
+					input += char(keyCode);
+				}
+		}
+	};
+}
 int main(int argc, char** argv)
 {
     List<string> main;
     readFile(main);
-	mainGraphics<string>(main,"",0);
+    DictProcessing(main);
     return 0;
 }
 #endif
