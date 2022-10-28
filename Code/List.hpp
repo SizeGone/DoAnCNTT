@@ -36,7 +36,7 @@ template <class T> class List {
 		bool IsEmpty () const;
 		unsigned short int Size () const;
 		//Method:
-		Error_Code Replace (int position, const T& item);
+		Error_Code Replace (int position, EWord<T>* item);
 		Error_Code Retrieve (int position,T& item)const;
 		Error_Code Reverse ();
 		Error_Code Insert (int position, EWord<T>* item);

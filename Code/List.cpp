@@ -70,14 +70,14 @@ unsigned short int List<T>::Size() const
 {
     return count;
 }
-//Cần sửa lại:
+//Thay đổi data ở vị trí position trong list
 template <class T>
-Error_Code List<T>::Replace(int position, const T &item)
+Error_Code List<T>::Replace(int position, EWord<T>* item)
 {
     if (position < 0 || position > count)
         return Error_Code::range_error;
     Node<T> *tmp = set_position(position);
-    tmp->data->word = item;
+    tmp->data = item;
     return success;
 }
 //Lấy giá trị tại pos 
