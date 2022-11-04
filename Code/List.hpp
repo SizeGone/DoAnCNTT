@@ -37,17 +37,17 @@ template <class T> class List {
 		unsigned short int Size () const;
 		//Method:
 		Error_Code Replace (int position, EWord<T>* item);
-		Error_Code Retrieve (int position,T& item)const;
+		Error_Code Retrieve (int position,EWord<T>** item)const; 
 		Error_Code Reverse ();
 		Error_Code Insert (int position, EWord<T>* item);
 		Error_Code Remove (int position, T& item);
 		Error_Code PushBack (EWord<T> *item);
-		Error_Code PushFront (EWord<T>* item);
-		Error_Code PrintList ();
-		EWord<T>* GetFront ();
-		EWord<T>* GetBack ();
-		EWord<T>* GetValueAt(int position);
-		Error_Code RemoveFront (T& item);
-		Error_Code RemoveBack (T& item);
+		Error_Code PushFront (EWord<T>* item); //need to used
+		Error_Code PrintList (); //need to used
+		EWord<T>* GetFront (); //need to used
+		EWord<T>* GetBack (); //need to used
+		T GetValueAt(int position);
+		Error_Code RemoveFront (T& item); //need to used
+		Error_Code RemoveBack (T& item);//need to used
 		Node<T> * GetHead();
 };

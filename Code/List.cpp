@@ -82,12 +82,12 @@ Error_Code List<T>::Replace(int position, EWord<T>* item)
 }
 //Lấy giá trị tại pos 
 template <class T>
-Error_Code List<T>::Retrieve(int position, T &item) const
+Error_Code List<T>::Retrieve(int position, EWord<T>** item) const
 {
     if (position < 0 || position > count)
         return Error_Code::range_error;
-    Node<T> *tmp = set_position(position);
-    item = tmp->data->word;
+    Node<T> *tmp = set_position(position-1);
+    *item = tmp->data;
     return success;
 }
 // Chèn dữ liệu mới vào vị trí bất kì trong List:
@@ -233,7 +233,7 @@ EWord<T>* List<T>::GetBack()
 }
 // Lấy giá trị ở vị trí bất kì trong List:
 template <class T>
-EWord<T>* List<T>::GetValueAt(int position)
+T List<T>::GetValueAt(int position)
 {
     if (head == nullptr)
     {
@@ -244,11 +244,11 @@ EWord<T>* List<T>::GetValueAt(int position)
     Node<T> *ptemp;
     if (position > 0)
     {
-        ptemp = set_position(position - 1);
-        return ptemp->data;
+        ptemp = set_position(position-1);
+        return ptemp->data->word;
     }
     if (position == 0)
-        return head->data;
+        return head->data->word;
     return "No value exists";
 }
 // In ra toàn bộ List:

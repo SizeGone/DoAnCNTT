@@ -174,7 +174,6 @@ void WordInfo(Node<T> *p) {
 	cout << " " << char(254) << " Esc      : Ve lai man hinh chinh" << endl;
 	cout << " " << char(254) << " Tab      : Sua tu nay" << endl;
 	cout << " " << char(254) << " Backspace: Xoa tu nay" << endl;
-
 	// in ra cac chi tiet cua tu
 	cout << endl << " " << p->data->word;
 	cout << endl << " ---";
@@ -270,10 +269,12 @@ Node<T>* mainGraphics(List<T> &dict, T input, int pos) {
 	// in ra cac huong dan
 	// o man hinh chinh
 	cout << " " << APP_NAME << endl;
-	cout << " " << char(254) << " Esc  : Thoat chuong trinh" << endl;
-	cout << " " << char(254) << " Tab  : Them tu moi" << endl;
-	cout << " " << char(254) << " Enter: Xem nghia cua tu" << endl;
-
+	cout << " " << char(254) << " Esc   : Thoat chuong trinh" << endl;
+	cout << " " << char(254) << " Tab   : Them tu moi" << endl;
+	cout << " " << char(254) << " Enter : Xem nghia cua tu" << endl;
+	cout << " " << char(254) << " Phim 1: Dao nguoc danh sach" << endl;
+	cout << " " << char(254) << " Phim 2: Xem tu tieng anh o vi tri bat ky trong danh sach" << endl;
+	cout << " " << char(254) << " Phim 3: Xem chi tiet tu tieng anh o vi tri bat ky trong danh sach " << endl;
 	// ve khung tim kiem
 	cout << char(218);
 	for (int i = 0; i < MAX_ROW; i++) {
@@ -297,7 +298,7 @@ Node<T>* mainGraphics(List<T> &dict, T input, int pos) {
 
 	// neu dang o man hinh chinh,
 	// dua con tro nhap nhay ve lai khung tim kiem
-	gotoxy(1 + input.size(), 5);
+	gotoxy(1 + input.size(), 8);
 
 	return currword;
 }
@@ -306,7 +307,7 @@ EWord<T>* EnterData() {
 	ClrScr();
 	EWord<T> *p = new EWord<T>();
 	p->first = NULL;
-	
+
 	string temp = "";
 	// nhap tu
 	cout << "Nhap tu: ";
@@ -328,18 +329,18 @@ EWord<T>* EnterData() {
 		if (temp == "") break;
 		p->mean[i] = temp;
 	}
-	
+
 	int count = 0;
 	while (true) {
 		temp = "";
 		cout << "Nhap vi du " << ++count << ": ";
 		getline(cin, temp);
 		if (temp == "") break;
-		InsertExToTopList(p->first, temp); 
+		InsertExToTopList(p->first, temp);
 	};
-	
+
 	change = true;
-	
+
 	return p;
 }
 
@@ -362,23 +363,35 @@ void DeleteWord(List<T> &dict, Node<T> *curr) {
 	if (c != 'y') {
 		return;
 	}
-	cout << GetPos(curr,dict);
 	T test;
 	dict.Remove(GetPos(curr, dict), test);
+	change = true;
+}
+
+template <class T>
+void Reverse(List<T> &dict){
+	ClrScr();
+	cout << "Ban co chac muon dao nguoc danh sach nay (y/n)?";
+	char c = getch();
+
+	if (c != 'y') {
+		return;
+	}
+	dict.Reverse();
 	change = true;
 }
 template <class T>
 EWord<T>* EditWord(EWord<T>* p) {
 	ClrScr();
-	
+
 	cout << "Sua tu: '" << p->word << "':" << endl;
-	
+
 	string temp = "";
 	cout << "Sua loai tu (" << p->type << "): ";
 	getline(cin, temp);
 	if (temp == "") return p;
 	p->type = temp;
-	
+
 	for (int i = 0; i < MAX_MEAN; i++) {
 		temp = "";
 		cout << "Sua nghia " << i + 1 << " (" << p->mean[i] << "): ";
@@ -386,7 +399,7 @@ EWord<T>* EditWord(EWord<T>* p) {
 		if (temp == "") break;
 		p->mean[i] = temp;
 	}
-	
+
 	NodeEx<T> *vd = p->first;
 	int count = 0;
 	if (vd == NULL) {
@@ -407,9 +420,17 @@ EWord<T>* EditWord(EWord<T>* p) {
 			vd = vd->next;
 		}
 	}
-	
+
 	change = true;
 	return p;
+}
+
+int enterPos(){
+	ClrScr();
+	int input;
+	cout << "Nhap vi tri ban muon lay gia tri:";
+	cin >> input;
+	return input;
 }
 
 /* ham xu ly chinh cua chuong trinh */
@@ -432,32 +453,45 @@ void DictProcessing(List<T> &dict) {
 				dict.PushBack(EnterData<string>());
 				count = dict.Size();
 				break;
+			case 49: //1
+				Reverse(dict);
+				break;
+			case 50: //2
+				input = dict.GetValueAt(enterPos());
+				break;
+			case 51: //3
+				EWord<T> *tamp;
+				dict.Retrieve(1, &tamp);
+				input = tamp -> word;
+				break;
 			case 13: // ENTER
 				// vao man hinh chi tiet tu
-				WordInfo(curr);
-				int k;
-				do {
-					k = getch();
-					if (k == 8) { // BACKSPACE
-						// xoa tu nay
-						DeleteWord(dict,curr);
-						input = "";
-						pos = 0;
-						break; // ve man hinh chinh
-					}
-					if (k == 9) { // TAB
-						// sua tu nay
-						dict.Replace(GetPos(curr,dict),EditWord<string>(curr->data));
-						input = "";
-						pos = 0;
-						break; // ve man hinh chinh
-					}
-					if (k == 27) { // ESCAPE
-						input = ""; // reset gia tri trong khung tim kiem
-						pos = 0;
-						break; // ve man hinh chinh
-					}
-				} while (true);
+				if(curr != NULL) {
+					WordInfo(curr);
+					int k;
+					do {
+						k = getch();
+						if (k == 8) { // BACKSPACE
+							// xoa tu nay
+							DeleteWord(dict,curr);
+							input = "";
+							pos = 0;
+							break; // ve man hinh chinh
+						}
+						if (k == 9) { // TAB
+							// sua tu nay
+							dict.Replace(GetPos(curr,dict),EditWord<string>(curr->data));
+							input = "";
+							pos = 0;
+							break; // ve man hinh chinh
+						}
+						if (k == 27) { // ESCAPE
+							input = ""; // reset gia tri trong khung tim kiem
+							pos = 0;
+							break; // ve man hinh chinh
+						}
+					} while (true);
+				}
 				break;
 			case 27: // ESCAPE
 				gotoxy(2, 25);

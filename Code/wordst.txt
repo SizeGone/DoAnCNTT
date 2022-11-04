@@ -19,4 +19,3 @@ mine/danh tu/min;qua min;thuy loi;ham mo;cua toi;/Don't step on any mines;I don'
 mine/dong tu/dat min;khai mo;/Mine for gold;Mine the Earth for gold;/
 zoo/danh tu/vuon thu;so thu;/My father's taking me to the zoo this weekend;/
 zone/danh tu/khu;mien;/Industrial zone;A nuclear-free zone;The zone of influence;/
-love/n/tinh yeu;/i love you;/
