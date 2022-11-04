@@ -460,12 +460,15 @@ void DictProcessing(List<T> &dict) {
 				input = dict.GetValueAt(enterPos());
 				break;
 			case 51: //3
-				EWord<T> *tamp;
-				dict.Retrieve(1, &tamp);
-				input = tamp -> word;
+				Node<T> *tamp;
+				dict.Retrieve(enterPos(), &tamp);
+				curr=tamp;
+				goto caseenter;
 				break;
+			
 			case 13: // ENTER
 				// vao man hinh chi tiet tu
+				caseenter:
 				if(curr != NULL) {
 					WordInfo(curr);
 					int k;

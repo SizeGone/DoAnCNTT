@@ -37,7 +37,7 @@ template <class T> class List {
 		unsigned short int Size () const;
 		//Method:
 		Error_Code Replace (int position, EWord<T>* item);
-		Error_Code Retrieve (int position,EWord<T>** item)const; 
+		Error_Code Retrieve (int position,Node<T>** item)const; 
 		Error_Code Reverse ();
 		Error_Code Insert (int position, EWord<T>* item);
 		Error_Code Remove (int position, T& item);

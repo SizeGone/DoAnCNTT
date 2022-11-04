@@ -82,12 +82,12 @@ Error_Code List<T>::Replace(int position, EWord<T>* item)
 }
 //Lấy giá trị tại pos 
 template <class T>
-Error_Code List<T>::Retrieve(int position, EWord<T>** item) const
+Error_Code List<T>::Retrieve(int position, Node<T>** item) const
 {
     if (position < 0 || position > count)
         return Error_Code::range_error;
     Node<T> *tmp = set_position(position-1);
-    *item = tmp->data;
+    *item = tmp;
     return success;
 }
 // Chèn dữ liệu mới vào vị trí bất kì trong List:
