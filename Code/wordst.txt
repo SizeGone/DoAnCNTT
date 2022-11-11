@@ -1,21 +1,21 @@
-about/pho tu/khoang chung;sap;gan;/He is about to die;We're about to start;How about this?;/
-add/dong tu/them vao;/add this thing;/
-apple/danh tu/qua tao;/I have an apple;/
-army/danh tu/quan doi;doi quan;/You're in the army now;I need an army;/
-ball/danh tu/qua bong;qua banh;qua cau;buoi khieu vu;/I have a foot ball;I love meatballs;They're refusing to play ball;/
-bear/danh tu/con gau;/It was a big bear;/
-big/tinh tu/to;lon;quan trong;/It's not a big deal;He looks so big;That is a big tree;He likes to talk big;/
-big/tinh tu/to lon;/big apple;/
-cold/tinh tu/lanh;nguoi;lanh lung;lanh nhat;/I feel so cold;The weather is getting colder;Kill somebody in cold blood;/
-dad/danh tu/cha;ba;bo;/My dad is a teacher;I love my dad;/
-family/danh tu/gia dinh;/I love my family;/
-father/danh tu/cha;ba;bo;/My father is a teacher;I love my father;/
-girl/danh tu/co gai;con gai;/I love this girl;This girl is pretty;/
-go/dong tu/di;/I have to go to work right now;Let's go;/
-hat/danh tu/cai non;cai mu;/I have a black hat;Please wear a hat;/
-king /danh tu\/vua;chua;vua 1;vua 2;vua 3;/asdfadsf;asdfasdf;asdfadsf;sdfdsaf;bad king;good king ;i want to be a king;/
-king/123/sadf;asdf;asdf;/adsf;/
-mine/danh tu/min;qua min;thuy loi;ham mo;cua toi;/Don't step on any mines;I don't want to work in a mine;The money is all mine;/
-mine/dong tu/dat min;khai mo;/Mine for gold;Mine the Earth for gold;/
-zoo/danh tu/vuon thu;so thu;/My father's taking me to the zoo this weekend;/
 zone/danh tu/khu;mien;/Industrial zone;A nuclear-free zone;The zone of influence;/
+zoo/danh tu/vuon thu;so thu;/My father's taking me to the zoo this weekend;/
+mine/dong tu/dat min;khai mo;/Mine for gold;Mine the Earth for gold;/
+mine/danh tu/min;qua min;thuy loi;ham mo;cua toi;/Don't step on any mines;I don't want to work in a mine;The money is all mine;/
+king/123/sadf;asdf;asdf;/adsf;/
+king /danh tu\/vua;chua;vua 1;vua 2;vua 3;/asdfadsf;asdfasdf;asdfadsf;sdfdsaf;bad king;good king ;i want to be a king;/
+hat/danh tu/cai non;cai mu;/I have a black hat;Please wear a hat;/
+go/dong tu/di;/I have to go to work right now;Let's go;/
+girl/danh tu/co gai;con gai;/I love this girl;This girl is pretty;/
+father/danh tu/cha;ba;bo;/My father is a teacher;I love my father;/
+family/danh tu/gia dinh;/I love my family;/
+dad/danh tu/cha;ba;bo;/My dad is a teacher;I love my dad;/
+cold/tinh tu/lanh;nguoi;lanh lung;lanh nhat;/I feel so cold;The weather is getting colder;Kill somebody in cold blood;/
+big/tinh tu/to lon;/big apple;/
+big/tinh tu/to;lon;quan trong;/It's not a big deal;He looks so big;That is a big tree;He likes to talk big;/
+bear/danh tu/con gau;/It was a big bear;/
+ball/danh tu/qua bong;qua banh;qua cau;buoi khieu vu;/I have a foot ball;I love meatballs;They're refusing to play ball;/
+army/danh tu/quan doi;doi quan;/You're in the army now;I need an army;/
+apple/danh tu/qua tao;/I have an apple;/
+add/dong tu/them vao;/add this thing;/
+about/pho tu/khoang chung;sap;gan;/He is about to die;We're about to start;How about this?;/

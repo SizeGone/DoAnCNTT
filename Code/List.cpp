@@ -212,7 +212,7 @@ EWord<T>* List<T>::GetFront()
 {
     if (head == nullptr)
     {
-        return "No value exists";
+        return nullptr;
     }
     else
         return head->data;
@@ -223,7 +223,7 @@ EWord<T>* List<T>::GetBack()
 {
     Node<T> *ptemp = head;
     if (head == nullptr)
-        return "No value exists";
+        return nullptr;
     else
     {
         while (ptemp->next != nullptr)

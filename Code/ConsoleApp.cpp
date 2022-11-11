@@ -135,7 +135,7 @@ void readFile(List<T> &dict) {
 }
 template <class T>
 void writeFile(List<T> &dict) {
-	ofstream fo("wordst.txt", ios::out | ios::trunc);
+	ofstream fo("words.txt", ios::out | ios::trunc);
 	if (fo.is_open()) {
 		Node<T> *p = dict.GetHead();
 		if (p == NULL)
@@ -275,6 +275,8 @@ Node<T>* mainGraphics(List<T> &dict, T input, int pos) {
 	cout << " " << char(254) << " Phim 1: Dao nguoc danh sach" << endl;
 	cout << " " << char(254) << " Phim 2: Xem tu tieng anh o vi tri bat ky trong danh sach" << endl;
 	cout << " " << char(254) << " Phim 3: Xem chi tiet tu tieng anh o vi tri bat ky trong danh sach " << endl;
+	cout << " " << char(254) << " Phim 4: Xoa phan tu dau danh sach" << endl;
+	cout << " " << char(254) << " Phim 5: Xoa phan tu cuoi danh sach" << endl;
 	// ve khung tim kiem
 	cout << char(218);
 	for (int i = 0; i < MAX_ROW; i++) {
@@ -298,12 +300,12 @@ Node<T>* mainGraphics(List<T> &dict, T input, int pos) {
 
 	// neu dang o man hinh chinh,
 	// dua con tro nhap nhay ve lai khung tim kiem
-	gotoxy(1 + input.size(), 8);
+	gotoxy(1 + input.size(), 10);
 
 	return currword;
 }
 template <class T>
-EWord<T>* EnterData() {
+void EnterData(List<T> &dict) {
 	ClrScr();
 	EWord<T> *p = new EWord<T>();
 	p->first = NULL;
@@ -312,7 +314,7 @@ EWord<T>* EnterData() {
 	// nhap tu
 	cout << "Nhap tu: ";
 	getline(cin, temp);
-	if (temp == "") return p;
+	if (temp == "") return;
 	else {
 		p->word = temp;
 	}
@@ -340,8 +342,21 @@ EWord<T>* EnterData() {
 	};
 
 	change = true;
+	do {
+		cout << "Ban muon them vao dau hay cuoi danh sach? (Go C va de them vao cuoi, go D de them vao dau):" << endl;
+		int input=getch();
+		if (input == 67 || input == 99) {
+			dict.PushBack(p);
+			return;
+		} else if(input == 68 || input == 100) {
+			dict.PushFront(p);
+			return;
+		} else if(input == 27) {
+			return;
+		}
+		cout << "Nhap sai, vui long nhap lai!, hoac nhap ESC de thoat" << endl;
+	} while(true);
 
-	return p;
 }
 
 template <class T>
@@ -369,7 +384,47 @@ void DeleteWord(List<T> &dict, Node<T> *curr) {
 }
 
 template <class T>
-void Reverse(List<T> &dict){
+void DeleteBackWord(List<T> &dict) {
+	ClrScr();
+	if(dict.GetHead() != nullptr) {
+		cout << "Ban co chac muon xoa tu '" << dict.GetBack()->word << "' (y/n)?";
+		char c = getch();
+
+		if (c != 'y') {
+			return;
+		}
+		T test;
+		dict.RemoveBack(test);
+		change = true;
+	}else{
+		cout << "Danh sach trong, nhan phim bat ky de thoat!";
+		char c = getch();
+		return;
+	}
+}
+
+template <class T>
+void DeleteFrontWord(List<T> &dict) {
+	ClrScr();
+	if(dict.GetHead() != nullptr) {
+		cout << "Ban co chac muon xoa tu '" << dict.GetFront()->word << "' (y/n)?";
+		char c = getch();
+
+		if (c != 'y') {
+			return;
+		}
+		T test;
+		dict.RemoveFront(test);
+		change = true;
+	}else{
+		cout << "Danh sach trong, nhan phim bat ky de thoat!";
+		char c = getch();
+		return;
+	}
+}
+
+template <class T>
+void Reverse(List<T> &dict) {
 	ClrScr();
 	cout << "Ban co chac muon dao nguoc danh sach nay (y/n)?";
 	char c = getch();
@@ -425,7 +480,7 @@ EWord<T>* EditWord(EWord<T>* p) {
 	return p;
 }
 
-int enterPos(){
+int enterPos() {
 	ClrScr();
 	int input;
 	cout << "Nhap vi tri ban muon lay gia tri:";
@@ -450,7 +505,7 @@ void DictProcessing(List<T> &dict) {
 				input = input.substr(0, input.size() - 1); // xoa ky tu cuoi
 				break;
 			case 9: // TAB
-				dict.PushBack(EnterData<string>());
+				EnterData<string>(dict);
 				count = dict.Size();
 				break;
 			case 49: //1
@@ -465,10 +520,16 @@ void DictProcessing(List<T> &dict) {
 				curr=tamp;
 				goto caseenter;
 				break;
-			
+			case 52: //4
+				DeleteFrontWord(dict);
+				break;
+			case 53: //5
+				DeleteBackWord(dict);
+				break;
+
 			case 13: // ENTER
 				// vao man hinh chi tiet tu
-				caseenter:
+caseenter:
 				if(curr != NULL) {
 					WordInfo(curr);
 					int k;
@@ -497,7 +558,7 @@ void DictProcessing(List<T> &dict) {
 				}
 				break;
 			case 27: // ESCAPE
-				gotoxy(2, 25);
+				gotoxy(2, 30);
 				if (change == true) { // neu du lieu co thay doi
 					cout << "Du lieu thay doi!!! Tien hanh ghi file..." << endl;
 					writeFile(dict);

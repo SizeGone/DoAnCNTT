@@ -42,12 +42,12 @@ template <class T> class List {
 		Error_Code Insert (int position, EWord<T>* item);
 		Error_Code Remove (int position, T& item);
 		Error_Code PushBack (EWord<T> *item);
-		Error_Code PushFront (EWord<T>* item); //need to used
-		Error_Code PrintList (); //need to used
-		EWord<T>* GetFront (); //need to used
-		EWord<T>* GetBack (); //need to used
+		Error_Code PushFront (EWord<T>* item);
+		Error_Code PrintList (); //need to use
+		EWord<T>* GetFront (); //need to use
+		EWord<T>* GetBack (); //need to use
 		T GetValueAt(int position);
-		Error_Code RemoveFront (T& item); //need to used
-		Error_Code RemoveBack (T& item);//need to used
+		Error_Code RemoveFront (T& item);
+		Error_Code RemoveBack (T& item);
 		Node<T> * GetHead();
 };
